@@ -50,7 +50,7 @@
 .main1 {
   z-index: auto;
   width: 68px;
-  height: 16px;
+  /*height: 16px;*/
   justify-content: space-between;
 }
 
@@ -63,14 +63,14 @@
 
 .info1 {
   z-index: 26;
-  width: 48px;
-  height: 16px;
+  width: 50px;
+  /*height: 16px;*/
   display: block;
   overflow-wrap: break-word;
   color: rgba(255, 255, 255, 1);
   font-size: 12px;
   font-family: MicrosoftYaHei;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 16px;
   text-align: left;
 }
@@ -88,7 +88,7 @@
   line-height: 19px;
   text-align: center;
   align-self: center;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
 
 .box2 {
@@ -119,6 +119,7 @@
   width: 48px;
   height: 16px;
   display: block;
+  overflow: hidden;
   overflow-wrap: break-word;
   color: rgba(255, 255, 255, 1);
   font-size: 12px;
@@ -181,9 +182,10 @@
 
 .word4 {
   z-index: 28;
-  width: 48px;
+  width: 60px;
   height: 16px;
   display: block;
+  overflow: hidden;
   overflow-wrap: break-word;
   color: rgba(255, 255, 255, 1);
   font-size: 12px;

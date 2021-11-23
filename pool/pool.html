@@ -260,7 +260,6 @@
 </body>
 <script src="../../coin/js/jquery.min.js"></script>
 <script src="../../coin/alert/alert.js"></script>
-<script src="../../coin/js/jquery.min.js"></script>
 <script src="../../coin/js/jquery.i18n.js"></script>
 <script src="../../coin/js/lang.js"></script>
 <script type="application/javascript">
@@ -268,11 +267,15 @@
     loadProperties(localStorage.getItem("lang"))
   })
   function alert(){
+    console.log( $.i18n.prop('t1'));
+    var x1 = $.i18n.prop('t34')
+    var x2 = $.i18n.prop('t35')
+    var x3 = $.i18n.prop('t36')
     var html = '<div>' +
-            '<div style="margin-bottom: 16px;color: #868998">没有请直接点击领取</div>' +
-            '<input type="password" name="pwd" placeholder="请输入密码" style="text-align:center;background: #303342;height: 46px;border-radius: 7px;border:none" />' +
+            '<div style="margin-bottom: 16px;color: #868998" data-locale="t35">'+x2+'</div>' +
+            '<input type="password" name="pwd" placeholder="" style="text-align:center;background: #303342;height: 46px;border-radius: 7px;border:none" />' +
             '</div>'
-    $.confirm({title:'输入体验券',content:html},function(){
+    $.confirm({title:x1,content:html},function(){
     });
   }
 </script>

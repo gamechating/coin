@@ -9,7 +9,7 @@
 	document.head.appendChild(css);
 	jQuery.extend({
 		open: function(type, option) {
-			var content = option?option:'', title = '', confirmText = '领取',cancelText = '取消';
+			var content = option?option:'', title = '', confirmText = 'Get',cancelText = 'Cancel';
 			if (typeof(option) == 'object') {
 				title = option.title? option.title: title;
 				content = option.content? option.content: content;
@@ -21,13 +21,13 @@
 			html += '<div class="dialog-modal dialog-modal-'+type+'" id="dialog-'+type+'">';
 			switch (type) {
 				case 'alert':
-					html += '<div class="dialog-modal-title">'+title+'</div>';
+					html += '<div class="dialog-modal-title" data-locale="t34">'+title+'</div>';
 					html += '<div class="dialog-modal-text">'+content+'</div>';
 					html += '<div class="dialog-modal-btn">';
 					html += '<button type="button">'+confirmText+'</button>';
 					break;
 				case 'confirm':
-					html += '<div class="dialog-modal-title">'+title+'</div>';
+					html += '<div class="dialog-modal-title" data-locale="t34">'+title+'</div>';
 					html += '<div class="dialog-modal-text">'+content+'</div>';
 					html += '<div class="dialog-modal-btn">';
 					html += '<button type="button" class="cancel">'+cancelText+'</button>';
