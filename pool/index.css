@@ -44,27 +44,29 @@
 
 .block2 {
   z-index: 2;
-  height: 167px;
-  background: url(./img/SketchPngf575f55d550d9568e8654f27b636a98dad8e181112bd68ae6215383667c3d737.png)
-    100% no-repeat;
+  /*height: 167px;*/
+  /*background: url(./img/SketchPngf575f55d550d9568e8654f27b636a98dad8e181112bd68ae6215383667c3d737.png)*/
+  /*  100% no-repeat;*/
   align-self: center;
-  margin-top: 21px;
+  /*margin-top: 21px;*/
   width: 335px;
   justify-content: flex-end;
-  padding-bottom: 17px;
+  padding: 17px;
   align-items: center;
+  border: 1px solid #3a3d4d;
+  border-radius: 10px;
 }
 
 .outer1 {
   z-index: auto;
   width: 295px;
-  height: 130px;
+  /*height: 130px;*/
 }
 
 .bd1 {
   z-index: auto;
   width: 295px;
-  height: 35px;
+  /*height: 35px;*/
   justify-content: space-between;
 }
 
@@ -84,19 +86,19 @@
 .section1 {
   z-index: auto;
   width: 175px;
-  height: 33px;
+  /*height: 33px;*/
 }
 
 .word1 {
   z-index: 40;
   width: 175px;
-  height: 19px;
+  /*height: 19px;*/
   display: block;
   overflow-wrap: break-word;
   color: rgba(255, 255, 255, 1);
   font-size: 14px;
   font-family: MicrosoftYaHei-Bold;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 19px;
   text-align: left;
 }
@@ -104,13 +106,13 @@
 .info1 {
   z-index: 41;
   width: 140px;
-  height: 14px;
+  /*height: 14px;*/
   display: block;
   overflow-wrap: break-word;
   color: rgba(255, 255, 255, 1);
   font-size: 10px;
   font-family: MicrosoftYaHeiLight;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 14px;
   text-align: left;
   align-self: flex-start;

@@ -2,7 +2,7 @@
   z-index: 1;
   position: relative;
   width: 375px;
-  height: 2246px;
+  /*height: 2246px;*/
   background-color: rgba(26, 27, 34, 1);
   overflow: hidden;
   justify-content: flex-end;
@@ -13,7 +13,8 @@
 .group1 {
   z-index: auto;
   width: 375px;
-  height: 2230px;
+  padding-bottom: 90px;
+  /*height: 2230px;*/
 }
 
 .box1 {
@@ -27,6 +28,7 @@
   border: 1px solid rgba(63, 66, 81, 1);
   align-self: flex-end;
   margin-right: 20px;
+  margin-top: 15px;
 }
 
 .word1 {
@@ -50,7 +52,7 @@
   right: 17px;
   top: 60px;
   width: 139px;
-  height: 351px;
+  height: 120px;
   background: #232530;
   box-shadow: 0px 7px 10px 0px rgba(18, 19, 26, 0.61);
   border-radius: 12px;
@@ -120,27 +122,25 @@
 .info1 {
   z-index: 28;
   width: 175px;
-  height: 19px;
   display: block;
   overflow-wrap: break-word;
   color: rgba(255, 255, 255, 1);
   font-size: 14px;
   font-family: MicrosoftYaHei-Bold;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 19px;
   text-align: left;
 }
 
 .word2 {
   z-index: 29;
-  width: 140px;
   height: 14px;
   display: block;
   overflow-wrap: break-word;
   color: rgba(255, 255, 255, 1);
   font-size: 10px;
   font-family: MicrosoftYaHeiLight;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 14px;
   text-align: left;
   align-self: flex-start;
@@ -259,7 +259,7 @@
 }
 
 .img1 {
-  z-index: 5;
+  z-index: 4;
   position: absolute;
   left: 207px;
   top: 62px;
@@ -268,7 +268,7 @@
 }
 
 .box7 {
-  z-index: 4;
+  z-index: 3;
   position: absolute;
   left: 0;
   top: 150px;
@@ -280,7 +280,7 @@
 
 .box8 {
   z-index: 25;
-  height: 560px;
+  /*height: 560px;*/
   border-radius: 12px;
   background-color: rgba(35, 37, 48, 1);
   align-self: flex-end;
@@ -294,19 +294,18 @@
 .main1 {
   z-index: auto;
   width: 291px;
-  height: 510px;
+  /*height: 510px;*/
 }
 
 .info3 {
   z-index: 68;
-  width: 80px;
   height: 26px;
   display: block;
   overflow-wrap: break-word;
   color: rgba(255, 255, 255, 1);
   font-size: 20px;
   font-family: MicrosoftYaHei;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 26px;
   text-align: left;
   align-self: center;
@@ -315,7 +314,7 @@
 .word9 {
   z-index: 84;
   width: 291px;
-  height: 454px;
+  /*height: 454px;*/
   display: block;
   overflow-wrap: break-word;
   color: rgba(160, 164, 180, 1);
@@ -331,24 +330,25 @@
 
 .box9 {
   z-index: 33;
-  height: 267px;
+  /*height: 267px;*/
   border-radius: 12px;
   background-color: rgba(35, 37, 48, 1);
   align-self: flex-end;
   width: 335px;
   margin: 16px 17px 0 0;
+  padding-bottom: 60px;
 }
 
 .mod1 {
+  width: 100%;
   z-index: auto;
-  width: 100px;
   height: 26px;
-  margin: 20px 0 0 115px;
+  margin: 20px 0 ;
+  text-align: center;
 }
 
 .txt3 {
   z-index: 69;
-  width: 100px;
   height: 26px;
   display: block;
   overflow-wrap: break-word;
@@ -358,12 +358,13 @@
   white-space: nowrap;
   line-height: 26px;
   text-align: center;
+  margin: 0 auto;
 }
 
 .mod2 {
   z-index: auto;
   width: 311px;
-  height: 42px;
+  /*height: 42px;*/
   justify-content: space-between;
   margin: 25px 0 0 12px;
 }
@@ -378,7 +379,7 @@
 .section1 {
   z-index: auto;
   width: 255px;
-  height: 42px;
+  /*height: 42px;*/
 }
 
 .word10 {
@@ -399,13 +400,13 @@
 .word11 {
   z-index: 81;
   width: 255px;
-  height: 19px;
+  /*height: 19px;*/
   display: block;
   overflow-wrap: break-word;
   color: rgba(255, 255, 255, 1);
   font-size: 14px;
   font-family: MicrosoftYaHei;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 19px;
   text-align: left;
   margin-top: 2px;
@@ -414,7 +415,7 @@
 .mod3 {
   z-index: auto;
   width: 212px;
-  height: 42px;
+  /*height: 42px;*/
   justify-content: space-between;
   margin: 20px 0 0 10px;
 }
@@ -429,13 +430,13 @@
 .group2 {
   z-index: auto;
   width: 154px;
-  height: 42px;
+  /*height: 42px;*/
 }
 
 .word12 {
   z-index: 79;
   width: 64px;
-  height: 21px;
+  /*height: 21px;*/
   display: block;
   overflow-wrap: break-word;
   color: rgba(220, 156, 53, 1);
@@ -450,13 +451,13 @@
 .word13 {
   z-index: 82;
   width: 154px;
-  height: 19px;
+  /*height: 19px;*/
   display: block;
   overflow-wrap: break-word;
   color: rgba(255, 255, 255, 1);
   font-size: 14px;
   font-family: MicrosoftYaHei;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 19px;
   text-align: left;
   margin-top: 2px;
@@ -465,7 +466,7 @@
 .mod4 {
   z-index: auto;
   width: 286px;
-  height: 42px;
+  /*height: 42px;*/
   justify-content: space-between;
   margin: 20px 0 0 12px;
 }
@@ -480,19 +481,19 @@
 .layer1 {
   z-index: auto;
   width: 230px;
-  height: 42px;
+  /*height: 42px;*/
 }
 
 .word14 {
   z-index: 80;
-  width: 64px;
+  /*width: 64px;*/
   height: 21px;
   display: block;
   overflow-wrap: break-word;
   color: rgba(220, 156, 53, 1);
   font-size: 16px;
   font-family: MicrosoftYaHei;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 21px;
   text-align: left;
   align-self: flex-start;
@@ -507,7 +508,7 @@
   color: rgba(255, 255, 255, 1);
   font-size: 14px;
   font-family: MicrosoftYaHei;
-  white-space: nowrap;
+  white-space: normal;
   line-height: 19px;
   text-align: left;
   margin-top: 2px;
@@ -705,7 +706,6 @@
   line-height: 26px;
   text-align: center;
   align-self: flex-start;
-  margin-left: 39px;
 }
 
 .pic2 {
