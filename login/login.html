@@ -71,9 +71,9 @@
       <div class="bd2 flex-col"></div>
     </div>
     <div class="main6 flex-row">
-      <span class="word5"><a href="../../coin/index.html" style="color: #fff;text-decoration: none">主页</a></span>
-      <span class="info2"><a href="../../coin/pool/pool.html" style="color: #fff;text-decoration: none">矿池</a></span>
-      <span class="word6"><a href="../../coin/my/my.html" style="color: #fff;text-decoration: none">我的</a></span>
+      <span class="word5"><a href="../../coin/index.html" style="color: #fff;text-decoration: none" data-locale="t21">主页</a></span>
+      <span class="info2"><a href="../../coin/pool/pool.html" style="color: #fff;text-decoration: none" data-locale="t22">矿池</a></span>
+      <span class="word6"><a href="../../coin/my/my.html" style="color: #fff;text-decoration: none" data-locale="t23">我的</a></span>
     </div>
   </div>
 </div>
@@ -84,6 +84,9 @@
 <script src="../../coin/js/jquery.i18n.js"></script>
 <script src="../../coin/js/lang.js"></script>
 <script type="application/javascript">
+  $(function (){
+    loadProperties(localStorage.getItem("lang"))
+  })
   function ethLogin(){
     console.log(11)
     WalletLinkDo()

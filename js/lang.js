@@ -1,5 +1,4 @@
 function loadProperties(lang) {
-    console.log(lang)
     $.i18n.properties({
         name: 'lang',  //资源文件名称 ， 命名格式： 文件名_国家代号.properties
         path: '../../coin/i18n/',    //资源文件路径，注意这里路径是你属性文件的所在文件夹,可以自定义。
@@ -12,6 +11,8 @@ function loadProperties(lang) {
         }
     });
     localStorage.setItem("lang",lang);
+    const langDiv = document.getElementById("langWrap");
+    langDiv.style.display="none"
 }
 
 function selectLang(id){
