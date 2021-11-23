@@ -1,0 +1,129 @@
+{
+  "compiler": {
+    "version": "0.4.26+commit.4563c3fc"
+  },
+  "language": "Solidity",
+  "output": {
+    "abi": [
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_spender",
+            "type": "address"
+          },
+          {
+            "name": "_amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "outputs": [
+          {
+            "name": "success",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_from",
+            "type": "address"
+          },
+          {
+            "name": "_to",
+            "type": "address"
+          },
+          {
+            "name": "_amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transferFrom",
+        "outputs": [
+          {
+            "name": "success",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "_owner",
+            "type": "address"
+          }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+          {
+            "name": "balance",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_to",
+            "type": "address"
+          },
+          {
+            "name": "_amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "outputs": [
+          {
+            "name": "success",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ],
+    "devdoc": {
+      "methods": {}
+    },
+    "userdoc": {
+      "methods": {}
+    }
+  },
+  "settings": {
+    "compilationTarget": {
+      "contracts/Test.sol": "TokenContractFragment"
+    },
+    "evmVersion": "byzantium",
+    "libraries": {},
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "remappings": []
+  },
+  "sources": {
+    "contracts/Test.sol": {
+      "keccak256": "0x5f26db8788243e17f8ca5eb14b13556242647fc1e204a5591b5f5501f0110a97",
+      "urls": [
+        "bzzr://27b1ea08d07ca738cb879c1fd468bb2b6dde471f3ddd89a0dc00bc8509c61164"
+      ]
+    }
+  },
+  "version": 1
+}

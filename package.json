@@ -1,0 +1,20 @@
+{
+  "name": "klcoinltest",
+  "version": "1.0.0",
+  "description": "hello",
+  "main": "index.js",
+  "dependencies": {
+    "ethers": "^5.5.1",
+    "web3": "^1.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "build:prod": "cross-env NODE_ENV=production env_config=prod node build/build.js",
+    "build:sit": "cross-env NODE_ENV=production env_config=sit node build/build.js",
+    "lint": "eslint --ext .js,.vue src"
+  },
+  "author": "kaoluo",
+  "license": "ISC"
+}

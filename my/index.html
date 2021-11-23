@@ -1,0 +1,316 @@
+<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coinbase</title>
+    <link rel="stylesheet" href="../../coin/my/css/naciga.css">
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js.js"></script>
+    <style>* {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: black;
+    }
+
+    .hzheads {
+        width: 100%;
+        height: 15rem;
+        background: url(/home/imgs/hzhead.jpg) no-repeat;
+        background-size: 100% 100%;
+
+    }
+
+    .hzheads p {
+        width: 70%;
+        height: 4rem;
+        color: white;
+        margin-left: 15%;
+        text-align: center;
+        position: relative;
+        top: 4.5rem;
+        font-size: 1.5rem;
+    }
+
+
+    .hzheads img {
+        width: 100%;
+        height: 15rem;
+    }
+
+    .hzbodys {
+        width: 90%;
+        margin-left: 5%;
+        height: 30rem;
+        background: linear-gradient(180deg, #414d84, #92abd3 16%, #e6f0f6 22%, rgba(231, 239, 252, .71));
+        position: relative;
+        top: -4rem;
+        border-radius: 50px 50px 0 0;
+    }
+
+    .hzbodys div {
+        width: 42.5%;
+        height: 6rem;
+
+    }
+
+    .hzbodys div p {
+        width: 90%;
+        margin-left: 10%;
+        color: white;
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+    }
+
+    .hzbodys div span {
+        display: block;
+        width: 90%;
+        margin-left: 10%;
+        color: black;
+        font-size: 0.9rem;
+        margin-top: 0.2rem;
+    }
+
+    .hzbodys div img {
+        width: 25%;
+        margin-left: 75%;
+
+    }
+
+    .hzbodys .hzbdtxt1 {
+        margin-top: 3rem;
+        background-color: rgb(31, 160, 243);
+        border-radius: 30px 0 0 0;
+        margin-left: 5%;
+        float: left;
+    }
+
+    .hzbodys .hzbdtxt2 {
+        margin-top: 3rem;
+        background-color: rgb(99, 114, 290);
+        border-radius: 0 30px 0 0;
+        margin-left: 5%;
+        float: left;
+    }
+
+    .hzbodys .hzbdtxt2 button {
+        margin-left: 10%;
+        float: left;
+        width: 60%;
+        height: 2rem;
+        margin-top: 0.5rem;
+        border-radius: 5px;
+        border: none;
+        background-color: rgb(173 192 240);
+    }
+
+    .hzbodys .hzbdtxt2 img {
+        float: right;
+        display: block;
+        margin-left: 0;
+
+    }
+
+    .hzbodys .hzbdtxt3 {
+        margin-top: 1rem;
+        background-color: rgb(9, 213, 186);
+        border-radius: 0 0 0 30px;
+        margin-left: 5%;
+        float: left;
+    }
+
+    .hzbodys .hzbdtxt4 {
+        margin-top: 1rem;
+        background-color: rgb(277, 127, 95);
+        border-radius: 0 0 30px 0;
+        margin-left: 5%;
+        float: left;
+    }
+
+    .hzbodys .hzbdtxt4 img {
+        margin-top: 1.4rem;
+
+    }
+
+    .hzbodys .tuijs {
+        width: 90%;
+        height: 4rem;
+        margin-left: 5%;
+    }
+
+    .hzbodys .tuijs .zhits {
+        width: 100%;
+        height: 2.5rem;
+
+    }
+
+    .hzbodys .tuijs .zhits p {
+        width: 50%;
+        float: left;
+        height: 2.5rem;
+        margin-left: 0;
+        height: 2.5rem;
+        text-align: center;
+        line-height: 2.5rem;
+        font-size: 0.8rem;
+    }
+
+    .hzbodys .tuijnr {
+        width: 90%;
+        height: 8.5rem;
+        margin-left: 5%;
+        box-shadow: 0 0 9px 3px #999;
+    }
+
+    .hzbodys .tuijnr .tjheads {
+        width: 90%;
+        margin-left: 5%;
+        height: 2rem;
+        border-bottom: 1px solid rgb(143, 149, 155);
+    }
+
+    .hzbodys .tuijnr .tjheads p {
+        width: 33%;
+        margin-left: 0;
+        height: 2rem;
+        line-height: 2rem;
+        float: left;
+        color: black;
+        font-size: 0.8rem;
+        margin-top: 0;
+    }
+
+    .hzbodys .tuijnr .tjbodys {
+        width: 100%;
+        height: 6.5rem;
+        overflow-y: scroll;
+    }
+
+    .hzbodys .tuijnr .tjbodys .tjbodytxt {
+        width: 90%;
+        margin-left: 5%;
+        height: 2rem;
+        border-bottom: 1px solid rgb(143, 149, 155);
+        margin-top: 0.1rem;
+    }
+
+    .hzbodys .tuijnr .tjbodys .tjbodytxt p {
+        width: 33%;
+        margin-left: 0;
+        height: 2rem;
+        line-height: 2rem;
+        float: left;
+        color: black;
+        font-size: 0.9rem;
+        margin-top: 0;
+    }
+
+    .naviga {
+        display: flex;
+        justify-content: space-around;
+    }
+    </style>
+</head>
+<body>
+<div class="naviga">
+    <div class="daohs"><a href="../../coin/index.html"><img src="img/sy.png" alt="">
+        <p>Home</p></a></div>
+    <div class="daohs"><a href="../pool/index.html"><img src="img/wk.png" alt=""><!-- 矿池 --><p>Mining Pool</p></a></div>
+    <div class="daohs"><a href="../my/index.html"><img src="img/hz.png" alt="">
+        <p>My</p></a></div><!--    <div class="daohs">--><!--        <a href="/trade/index/my">-->
+    <!--            <img src="/en_home/daohang/wd.png" alt="">--><!--            <p>My</p>--><!--        </a>-->
+    <!--    </div>--></div>
+<div class="hzheads"><!--<p>Invite good friends <br>Earn coins togerther</p>--></div>
+<div class="hzbodys">
+    <div style="width: 100%;height: 17rem;">
+        <div class="hzbdtxt1"><p>0 &nbsp;People</p><!-- 团队人数 --><span>Team Size</span><img src="img/rss.png" alt="">
+        </div>
+        <div class="hzbdtxt2"><p>0.00 $</p><!-- 团队收益 --><span>Team Earnings</span><img src="img/sys.png" alt=""></div>
+        <div class="hzbdtxt3"><p>0 &nbsp;People</p><!-- 直推人数 --><span>Directly-promoted people quantity</span><img
+                src="img/zts.png" alt=""></div>
+        <a href="/trade/index/my">
+            <div class="hzbdtxt4"><!-- 邀请好友 --><p style="font-size:1rem;">Invite Friends</p>
+                <p style="font-size:1rem;">Earn Together</p><img src="img/yqs.png" alt="" style="margin-top:0"></div>
+        </a></div>
+    <div class="tuijs">
+        <div class="zhits"><!-- 直推 --><p id="zhituis" style=" border-radius: 10px 0 0 10px;
+                background-color: rgb(243,170,75);">Direct promotion</p><!-- 间推 --><p id="jiantuis" style="border-radius: 0 10px 10px 0;
+                background-color: rgb(1,11,80);">Indirect promotion</p></div>
+    </div>
+    <div class="tuijnr" id="zjtjs" style="display: none;">
+        <div class="tjheads"><p>ID</p><!-- 等级 --><p>Yield Rate</p><!-- 昨日收益 --><p>Earnings</p></div>
+        <div class="tjbodys"></div>
+    </div>
+    <div class="tuijnr" id="jjtjs" style="display: none;">
+        <div class="tjheads"><p>ID</p>
+            <p>Yield Rate</p>
+            <p>Earnings</p></div>
+        <div class="tjbodys"></div>
+    </div>
+</div>
+<script>
+    $(function () {
+        // 判断本地是否有地址
+        let address = localStorage.getItem('address')
+        if (address) {
+            $.get("/trade/index/saveSession.html?address=" + address, function (res) {
+                if (res.code == 0) {
+                    location.reload()
+                }
+            })
+        }
+    })
+    $(document).ready(function () {
+        $("button").click(function () {
+            pincott();
+        });
+    });
+
+    function pincott() {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var jiji = xmlhttp.responseText;
+                if (jiji == '1') {
+                    alert("Update Successed");
+                    location.reload();//页面刷新
+                }
+                if (jiji == '2') {
+                    alert("The number of direct pushes is less than 10 or the usdt is less than 100!");
+                }
+
+
+            }
+        }
+
+        xmlhttp.open("GET", "/transfer/transfer/upgrade", true);
+        xmlhttp.send();
+    }
+
+    document.getElementById('zjtjs').style.display = 'block';
+    document.getElementById('jjtjs').style.display = 'none';
+
+    document.getElementById('zhituis').onclick = function () {
+        document.getElementById('zjtjs').style.display = 'block';
+        document.getElementById('jjtjs').style.display = 'none';
+        document.getElementById('zhituis').style.backgroundColor = 'rgb(243,170,75)';
+        document.getElementById('jiantuis').style.backgroundColor = 'rgb(1,11,80)';
+    }
+    document.getElementById('jiantuis').onclick = function () {
+        document.getElementById('zjtjs').style.display = 'none';
+        document.getElementById('jjtjs').style.display = 'block';
+        document.getElementById('jiantuis').style.backgroundColor = 'rgb(243,170,75)';
+        document.getElementById('zhituis').style.backgroundColor = 'rgb(1,11,80)';
+    }
+
+</script>
+</body>
+</html>

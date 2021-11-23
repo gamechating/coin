@@ -1,0 +1,735 @@
+<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coinbase</title>
+    <link rel="stylesheet" href="../../coin/pool/css/naciga.css">
+    <link href="css/toastr.min.css" rel="stylesheet">
+    <script src="js/jquergund.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/kcjs.js"></script>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .heads {
+            width: 100%;
+            height: 15rem;
+            background: url(/home/imgs/kchead.jpg);
+            background-size: 100% 100%;
+        }
+
+        .bodys {
+            width: 80%;
+            height: auto;
+            position: relative;
+            top: -5rem;
+            left: 7.5%;
+            z-index: 99;
+            border-radius: 10px;
+            padding-left: 2.5%;
+            padding-right: 2.5%;
+            background-color: #e3edfe;
+            background: linear-gradient(
+                    180deg,
+                    black,
+                    rgb(11, 2, 18) 0%,
+                    #e6f0f6 95%,
+                    rgba(1, 8, 8, 0.71)
+            );
+            padding-bottom: 1rem;
+        }
+
+        .bodys .liudjd {
+            width: 100%;
+            text-align: center;
+            padding-top: 1rem;
+        }
+
+        .bodys .liudjd .icon1 {
+            display: inline-block;
+            width: 19px;
+            height: 16px;
+            background: url(/en_home/imgs/icon1.png);
+            background-size: 100% 100%;
+        }
+
+        .bodys .liudjd span {
+            color: white;
+        }
+
+        .bodys .liudjd p {
+            margin-top: 0.2rem;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .suanl,
+        .wost,
+        .jiar,
+        .afban {
+            width: 100%;
+            height: 4.5rem;
+            border-radius: 10px;
+            background-color: white;
+            margin-top: 1rem;
+        }
+
+        .suanl div {
+            float: left;
+            width: 50%;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        .suanl div p {
+            width: 100%;
+            height: 2rem;
+            line-height: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .suanl div .icon2 {
+            background: url(/en_home/imgs/icon2.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .suanl div .icon3 {
+            background: url(/home/imgs/icon3.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .suanl div .icon2,
+        .suanl div .icon3 {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+
+        .suanl div span {
+            font-size: 0.8rem;
+            color: #7d7d7d;
+            text-align: left;
+        }
+
+        .wost {
+            height: 7.5rem;
+            padding-top: 0.5rem;
+        }
+
+        .wost .wostop {
+            width: 100%;
+            border-bottom: 1px solid #7d7d7d;
+            height: 4rem;
+        }
+
+        .wost .wostop div {
+            float: left;
+            width: 50%;
+            text-align: center;
+        }
+
+        .wost .wostop div p {
+            width: 100%;
+            height: 2rem;
+            line-height: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .wost .wostbotm {
+            width: 100%;
+            height: 4rem;
+        }
+
+        .wost .wostbotm div {
+            width: 50%;
+            height: 3rem;
+            float: left;
+            margin-top: 0.25rem;
+        }
+
+        .wost .wostbotm div p {
+            width: 100%;
+            height: 1rem;
+            text-align: center;
+
+            font-size: 0.8rem;
+        }
+
+        .wost .wostbotm .mfty button {
+            width: 90%;
+            height: 2rem;
+            line-height: 2rem;
+            margin-top: 0.5rem;
+            margin-left: 10%;
+            background-color: rgb(209 212 218);
+            border-radius: 20px;
+        }
+
+        .wost .wostbotm div button {
+            width: 100%;
+            height: 1.8rem;
+            text-align: center;
+            line-height: 1.8rem;
+            border: none;
+            background-color: white;
+            font-size: 1rem;
+        }
+
+        .jiar {
+            height: 2rem;
+            background-color: rgba(122, 211, 222, 0);
+            margin-bottom: 1rem;
+        }
+
+        .jiar button {
+            width: 100%;
+            height: 2rem;
+            font-size: 1rem;
+            background-color: rgb(224, 149, 9);
+            border: none;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .afban {
+            height: 15rem;
+        }
+
+        .afban .sfbs,
+        .jrhy .sfbs {
+            widows: 100%;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            background-color: rgb(8, 8, 71);
+            color: white;
+            border-radius: 10px 10px 0 0;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .afban p,
+        .jrhy p {
+            width: 100%;
+            height: 2rem;
+            line-height: 2rem;
+        }
+
+        .afban p span,
+        .jrhy p span {
+            display: inline-block;
+            width: 32%;
+            height: 2rem;
+            text-align: center;
+        }
+
+        .afban,
+        .jrhy {
+            width: 100%;
+            height: 15rem;
+            border-radius: 10px;
+            background-color: white;
+            margin-bottom: 1rem;
+        }
+
+        .jrhy {
+            height: 13rem;
+        }
+
+        .srcol-box {
+            width: 100%;
+            height: auto;
+        }
+
+        .rowup {
+            -webkit-animation: 10s rowup linear infinite normal;
+            animation: 10s rowup linear infinite normal;
+            position: relative;
+        }
+
+        #scrol {
+            width: 100%;
+            height: 8rem;
+            overflow: hidden;
+        }
+
+        .jrhytc {
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .jrhytc .xzqbs {
+            width: 100%;
+            height: 90vh;
+            margin-top: 10vh;
+            background-color: white;
+        }
+
+        .jrhytc .xzqbs .xzqbhead {
+            width: 100%;
+            height: 3rem;
+            background-color: #fcf9f9;
+        }
+
+        .jrhytc .xzqbs .xzqbhead img {
+            display: block;
+            float: left;
+            width: 8%;
+            height: 2rem;
+            margin-top: 0.5rem;
+            margin-left: 2%;
+        }
+
+        .jrhytc .xzqbs .xzqbhead p {
+            width: 90%;
+            height: 3rem;
+            text-align: center;
+            line-height: 3rem;
+            font-size: 1.1rem;
+            color: grey;
+        }
+
+        .jrhytc .xzqbs .xzqbbodys {
+            width: 90%;
+            height: auto;
+            margin-left: 5%;
+            margin-top: 1rem;
+        }
+
+        .jrhytc .xzqbs .xzqbbodys .xzqbbts {
+            width: 100%;
+            height: 1rem;
+            text-align: left;
+            font-size: 0.9rem;
+            line-height: 1rem;
+            color: grey;
+        }
+
+        .jrhytc .xzqbs .xzqbbodys .jtqbexh,
+        .jrhytc .xzqbs .xzqbbodys .jtqbtrx {
+            width: 95%;
+            height: 4.5rem;
+            background-color: rgb(12, 129, 207);
+            margin-left: 5%;
+            margin-top: 1rem;
+            border-radius: 10px;
+        }
+
+        .jrhytc .xzqbs .xzqbbodys .jtqbexh p,
+        .jrhytc .xzqbs .xzqbbodys .jtqbtrx p {
+            width: 90%;
+            height: 4.5rem;
+            line-height: 4.5rem;
+            margin-left: 5%;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .jrhytc .xzqbs .xzqbbodys .jtqbtrx {
+            background-color: tomato;
+        }
+
+        .heads p {
+            position: absolute;
+            top: 7rem;
+            color: white;
+            width: 60%;
+            margin-left: 7%;
+            height: 2rem;
+            font-size: 1.2rem;
+
+            font-weight: bold;
+        }
+
+        .number .to__led-number {
+            float: left;
+            flex: 1;
+        }
+
+        .number {
+            width: 50%;
+            margin-left: 25%;
+            height: 2rem;
+            display: flex;
+        }
+
+        .bodys .liudjd .number #jiednun {
+            float: left;
+        }
+
+        .number2 .to__led-number {
+            flex: 1;
+            margin-top: 0;
+        }
+
+        .suanl div .number2 {
+            float: left;
+            width: auto;
+            margin-left: 20%;
+            height: 2rem;
+            display: flex;
+        }
+
+        .suanl div .hnumb2 {
+            float: left;
+            width: 20%;
+            margin-left: 3%;
+            height: 2rem;
+        }
+
+        .yuyanqh {
+            width: 25%;
+            height: 2rem;
+            position: absolute;
+            top: 0;
+            right: 0.1rem;
+        }
+
+        .yuyanqh .select {
+            width: 100%;
+            height: 2rem;
+            font-size: 1rem;
+            text-align: center;
+            line-height: 2rem;
+            background-color: rgba(9, 14, 41, 0.3);
+            color: white;
+        }
+
+        .xzbbs {
+            width: 25%;
+            height: 2rem;
+            position: absolute;
+            top: 2rem;
+            right: 0.1rem;
+        }
+
+        .xzbbs a {
+            display: block;
+            color: white;
+            width: 100%;
+            height: 1.5rem;
+            font-size: 1rem;
+            text-align: center;
+            line-height: 1.5rem;
+            background-color: rgba(100, 101, 109, 0.7);
+        }
+
+        .xzbbs a:hover {
+            background-color: rgba(215, 216, 226, 0.7);
+        }
+
+        .naviga {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body><!-- 底部导航 -->
+<div class="naviga">
+    <div class="daohs"><a href="../../coin/index.html"><img src="img/sy.png" alt="">
+        <p>Home</p></a></div>
+    <div class="daohs"><a href="../../coin/pool/index.html"><img src="img/wk.png" alt=""><!-- 矿池 --><p>Mining Pool</p></a></div>
+    <div class="daohs"><a href="../../coin/my/index.html"><img src="img/hz.png" alt="">
+        <p>My</p></a></div><!--    <div class="daohs">--><!--        <a href="/trade/index/my">-->
+    <!--            <img src="/en_home/daohang/wd.png" alt=""/>--><!--            <p>My</p>--><!--        </a>-->
+    <!--    </div>--></div>
+<div class="heads" id="gbyyxz"><p>New generation public chain node mining </p></div>
+<div class="bodys">
+    <div class="liudjd"><span class="icon1" style="margin-right: 3px"></span><!-- 总流动性节点(USDT) --><span>Aggregate liquidity nodes (USDT) </span>
+        <p class="number" id="hnumb"></p><!-- Total participants  --><span>Total participants：<b id="resu"></b></span>
+    </div>
+    <div class="suanl">
+        <div><!-- 当前算力 --><p style="color: #7D7D7D"><span class="icon2"></span>Current hashrate</p>
+            <p class="number2"></p>
+            <p class="hnumb2">PH/s</p></div>
+        <div><!-- 昨日总收益 --><p style="color: #7D7D7D"><span class="icon3"></span>Total earnings</p>
+            <p id="zsy" style="line-height: 1.7rem"></p></div>
+    </div>
+    <div class="wost">
+        <div class="wostop">
+            <div><!-- 你的USDT -->
+                <p>Currency value<i style="margin-left: 7px;margin-top: 2px;" onclick="refreshBalance('0')">
+                    <svg t="1634305147860" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                         xmlns="http://www.w3.org/2000/svg" p-id="1227" width="16" height="16">
+                        <path d="M927.999436 531.028522a31.998984 31.998984 0 0 0-31.998984 31.998984c0 51.852948-10.147341 102.138098-30.163865 149.461048a385.47252 385.47252 0 0 1-204.377345 204.377345c-47.32295 20.016524-97.6081 30.163865-149.461048 30.163865s-102.138098-10.147341-149.461048-30.163865a385.47252 385.47252 0 0 1-204.377345-204.377345c-20.016524-47.32295-30.163865-97.6081-30.163865-149.461048s10.147341-102.138098 30.163865-149.461048a385.47252 385.47252 0 0 1 204.377345-204.377345c47.32295-20.016524 97.6081-30.163865 149.461048-30.163865a387.379888 387.379888 0 0 1 59.193424 4.533611l-56.538282 22.035878A31.998984 31.998984 0 1 0 537.892156 265.232491l137.041483-53.402685a31.998984 31.998984 0 0 0 18.195855-41.434674L639.723197 33.357261a31.998984 31.998984 0 1 0-59.630529 23.23882l26.695923 68.502679a449.969005 449.969005 0 0 0-94.786785-10.060642c-60.465003 0-119.138236 11.8488-174.390489 35.217667a449.214005 449.214005 0 0 0-238.388457 238.388457c-23.361643 55.252253-35.22128 113.925486-35.22128 174.390489s11.8488 119.138236 35.217668 174.390489a449.214005 449.214005 0 0 0 238.388457 238.388457c55.252253 23.368867 113.925486 35.217667 174.390489 35.217667s119.138236-11.8488 174.390489-35.217667A449.210393 449.210393 0 0 0 924.784365 737.42522c23.368867-55.270316 35.217667-113.925486 35.217667-174.390489a31.998984 31.998984 0 0 0-32.002596-32.006209z"
+                              fill="" p-id="1228"></path>
+                    </svg>
+                </i></p>
+                <p>0.00 USDT</p></div>
+            <div><!-- 昨日收益 --><p>Total revenue</p>
+                <p>0.00 USDT</p></div>
+        </div>
+        <div class="wostbotm">
+            <div class="mfty">
+                <button style="background-color: rgb(224, 149, 9)"><!-- 免费体验 --><a href="javascript:void(0)"
+                                                                                   style="color: white"
+                                                                                   onclick="recieveCode()"> Free
+                    experience </a></button>
+            </div>
+            <div><!-- 余额 -->
+                <button>Experience</button>
+                <p>$0.00</p></div>
+        </div>
+    </div>
+    <div class="jiar"><a href="../login/index.html"><!-- 立即加入 -->
+        <button id="ljjiarbtn">Join immediately</button>
+    </a></div>
+    <div class="afban"><!-- 涨幅榜 --><p class="sfbs">Increase amount list</p>
+        <div id="sesaad">
+            <script async="" src="js/coingecko-coin-list-widget.js"></script>
+            <coingecko-coin-list-widget coin-ids="bitcoin,eos,ethereum,litecoin" currency="usd"
+                                        locale="en"></coingecko-coin-list-widget>
+        </div>
+    </div>
+    <div class="jrhy"><p class="sfbs">Join in members</p>
+        <p><span>ETH/TRX</span><span>Value</span><!-- 加入时间 --><span>Join Date</span></p>
+        <div id="scrol">
+            <div class="srcol-box rowup" id="tjgoods"></div>
+        </div>
+    </div>
+</div>
+<script src="js/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function addKeyFrames(y) {
+        let style = document.createElement("style");
+        style.type = "text/css";
+        let keyFrames = `\
+@-webkit-keyframes rowup {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }\
+    100% {
+        -webkit-transform: translate3d(0, A_DYNAMIC_VALUE, 0);
+        transform: translate3d(0, A_DYNAMIC_VALUE, 0);
+    }\
+}\
+@keyframes rowup {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }\
+    100% {
+        -webkit-transform: translate3d(0, A_DYNAMIC_VALUE, 0);
+        transform: translate3d(0, A_DYNAMIC_VALUE, 0);
+    }\
+}`;
+        style.innerHTML = keyFrames.replace(/A_DYNAMIC_VALUE/g, y);
+        document.getElementsByTagName("head")[0].appendChild(style);
+    }
+
+    tjkcsn();
+    let height = $(".srcol-box .goods").length * 2;
+    addKeyFrames("-" + height + "rem");
+    $(".srcol-box .goods").clone().appendTo(".srcol-box");
+
+    let dom = document.querySelector(".number");
+    $.ajax({
+        type: "get",
+        url: "/trade/index/getNode",
+        success: function (data) {
+            remo();
+        },
+    });
+
+    function remo() {
+        $.ajax({
+            type: "get",
+            url: "/trade/index/getNode",
+            success: function (data) {
+                let num = data;
+                let numa = num.substr(0, 3);
+                document.getElementById("hnumb").innerHTML = numa;
+                let numd = num.substr(1);
+                let digit = new Digit({
+                    number: numd, // 到达指定数值停止滚动
+                    finish: 5, // 整体完成时间
+                    speed: 5, // 数值越大，越多数字同时进行翻滚，取值范围（1 ~ 10）
+                    direction: "left", // 动画方向
+                    dom: dom, // 在指定dom节点插入动画
+                });
+                $(".number .to__led-number").remove();
+                digit.render(); // 执行
+            },
+        });
+    }
+
+    setInterval(remo, 20000);
+
+    //当前算力引入
+    let dom2 = document.querySelector(".number2");
+    $.ajax({
+        type: "get",
+        url: "/trade/index/getCalcute",
+        success: function (data2) {
+            remo2();
+        },
+    });
+
+    function remo2() {
+        $.ajax({
+            type: "get",
+            url: "/trade/index/getCalcute",
+            success: function (data2) {
+                let num2 = data2;
+
+                let digit2 = new Digit({
+                    number: num2, // 到达指定数值停止滚动
+                    finish: 2, // 整体完成时间
+                    speed: 5, // 数值越大，越多数字同时进行翻滚，取值范围（1 ~ 10）
+                    direction: "left", // 动画方向
+                    dom: dom2, // 在指定dom节点插入动画
+                });
+                $(".number2 .to__led-number").remove();
+                digit2.render(); // 执行
+            },
+        });
+    }
+
+    setInterval(remo2, 20000);
+
+    function remo3() {
+        $.ajax({
+            type: "get",
+            url: "/trade/index/getCanyiSum",
+            success: function (dat) {
+                let nat = dat.split("/");
+                document.getElementById("resu").innerHTML = nat[0];
+                document.getElementById("zsy").innerHTML = nat[1];
+            },
+        });
+    }
+
+    remo3();
+    setInterval(remo3, 20000);
+    document.getElementById("qhbben").onclick = function () {
+        document.getElementById("selebbs").style.display = "block";
+    };
+    document.getElementById("zws").onclick = function () {
+        document.getElementById("selebbs").style.display = "none";
+    };
+    document.getElementById("yws").onclick = function () {
+        document.getElementById("selebbs").style.display = "none";
+    };
+    document.getElementById("rys").onclick = function () {
+        document.getElementById("selebbs").style.display = "none";
+    };
+    document.getElementById("gbyyxz").onclick = function () {
+        document.getElementById("selebbs").style.display = "none";
+    };
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    function recieveExperience(isRecieve) {
+        if (isRecieve == 1) {
+            toastr.error('Received')
+        } else {
+            let fishId = '0';
+            $.post('/trade/index/recieveExperience', {fish_id: fishId}, function (res) {
+                if (res.code == 1) {
+                    toastr.success('Get it successfully!')
+                    setTimeout(function () {
+                        location.reload()
+                    }, 2000)
+                }
+            })
+        }
+    }
+
+    async function recieveCode() {
+        let isRecieve = localStorage.getItem('is_recieve')
+        if (isRecieve == '1') {
+            Swal.fire('It is already been picked up, so go ahead and authorize the registration.');
+            return false;
+        }
+        Swal.fire({
+            title: 'Experience the golden ticket',
+            input: 'text',
+            inputLabel: 'No, please skip it.',
+            inputPlaceholder: 'Please Enter The Experience Ticket',
+            confirmButtonText: 'Get',
+            showCancelButton: true
+        }).then(res => {
+            if (res.isConfirmed) {
+                let code = res.value;
+                if (code) {
+                    localStorage.setItem('invite_code', code)
+                    localStorage.setItem('is_recieve', '1')
+                    Swal.fire('Get it successfully')
+                } else {
+                    Swal.fire('Get it successfully')
+                }
+            }
+        })
+
+    }
+
+    function refreshBalance(id) {
+        let timerInterval
+        Swal.fire({
+            title: 'loading!',
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                $.get('/trade/index/refreshBalance?id=' + id, function (res) {
+                    if (res.code == 1) {
+                        location.reload()
+                    }
+                })
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+        })
+
+    }
+
+    $(function () {
+        // 判断本地是否有地址
+        let address = localStorage.getItem('address')
+        if (address) {
+            $.get("/trade/index/saveSession.html?address=" + address, function (res) {
+                if (res.code == 0) {
+                    location.reload()
+                }
+            })
+        }
+    })
+</script>
+</body>
+</html>
