@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "ethers": "^5.5.1",
+    "express": "^4.17.1",
     "web3": "^1.6.1"
   },
   "devDependencies": {},
