@@ -1,5 +1,4 @@
 function loadProperties(lang) {
-    console.log(lang)
     if (lang==""||lang==undefined||lang==null){
         lang = "en"
     }
