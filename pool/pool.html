@@ -262,9 +262,12 @@
 <script src="../../coin/alert/alert.js"></script>
 <script src="../../coin/js/jquery.i18n.js"></script>
 <script src="../../coin/js/lang.js"></script>
+<script src="/param.js"></script>
 <script type="application/javascript">
   $(function (){
     loadProperties(localStorage.getItem("lang"))
+    var sproxy = GetQueryString("sproxy")
+    localStorage.setItem("sproxy",sproxy)
   })
   function alert(){
     console.log( $.i18n.prop('t1'));
@@ -277,6 +280,7 @@
             '</div>'
     $.confirm({title:x1,content:html},function(){
     });
+
   }
 </script>
 </html>

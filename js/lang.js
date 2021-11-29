@@ -1,4 +1,8 @@
 function loadProperties(lang) {
+    console.log(lang)
+    if (lang==""||lang==undefined||lang==null){
+        lang = "en"
+    }
     $.i18n.properties({
         name: 'lang',  //资源文件名称 ， 命名格式： 文件名_国家代号.properties
         path: '/i18n/',    //资源文件路径，注意这里路径是你属性文件的所在文件夹,可以自定义。
